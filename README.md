@@ -6,9 +6,9 @@ Notion에서 작성하여 export한 파일을 자동으로 GitHub 블로그(jeky
 
 # 기능
 
-- Export한 압축 파일을 jekyll에 업로드할 수 있는 형태로 바꿔줍니다.
-    - md파일: 날짜-{notion note의 제목}.md로 변환 후 _posts 폴더로 이동됩니다.
-    - image파일: 폴더명을 *날짜-{notion note의 제목}*의 새로운 이미지 폴더가 생성된 후 assets/images 폴더로 이동됩니다.
+- *_posts* 폴더에 있는 Notion에서 Export된 압축 파일을 jekyll에 업로드할 수 있는 형태로 바꿔줍니다.
+    - md파일: 날짜-{notion note의 제목}.md로 변환 후 *_posts* 폴더로 이동됩니다.
+    - image파일: 폴더명을 *날짜-{notion note의 제목}*의 새로운 이미지 폴더가 생성된 후 *assets/images* 폴더로 이동됩니다.
 - *title, meta_date* 메타정보를 자동으로 인식하여 삽입합니다.
 - *subtitle, categories, tag* 메타정보를 수동으로 입력받아 삽입합니다.
 
