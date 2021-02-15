@@ -68,26 +68,27 @@ for file in zip_files:
 
         # -----------------------[Image]---------------------------
         images = [i for i in content_files if i != md_file]
-        ori_img_dir = os.path.split(images[0])[0]
+        if len(images):
+            ori_img_dir = os.path.split(images[0])[0]
 
-        # change names of image files (space -> %20)
-        for image in images:
-            new_img_name = imgNameTransform(os.path.basename(image))
-            os.rename(image, os.path.join(ori_img_dir,new_img_name))
+            # change names of image files (space -> %20)
+            for image in images:
+                new_img_name = imgNameTransform(os.path.basename(image))
+                os.rename(image, os.path.join(ori_img_dir,new_img_name))
+    
+            # move images
+            new_image_dir = os.path.join(images_folder_path, file_name)
+            shutil.move(ori_img_dir, new_image_dir)
 
-        # move images
-        new_image_dir = os.path.join(images_folder_path, file_name)
-        shutil.move(ori_img_dir, new_image_dir)
 
-
-        # edit a md file (edit image path)
-        for idx, line in enumerate(lines):
-            find_img_content = re.search('!\[(.+)/(.+?)\]',line)
-            if find_img_content:
-                img_path = find_img_content.group(1)
-                img_name = find_img_content.group(2)
-                line = line.replace(img_path, "/"+new_image_dir.replace(os.sep,"/"))
-                lines[idx] = line.replace(img_name, imgNameTransform(img_name))
+            # edit a md file (edit image path)
+            for idx, line in enumerate(lines):
+                find_img_content = re.search('!\[(.+)/(.+?)\]',line)
+                if find_img_content:
+                    img_path = find_img_content.group(1)
+                    img_name = find_img_content.group(2)
+                    line = line.replace(img_path, "/"+new_image_dir.replace(os.sep,"/"))
+                    lines[idx] = line.replace(img_name, imgNameTransform(img_name))
 
     os.remove(md_file)
     zf.close()
