@@ -47,7 +47,11 @@ for file in zip_files:
                 break
 
         meta_date = time.strftime('%Y-%m-%d %H:%M:%S +0009')
-        print("Title: %s"%meta_title)
+        file_name = time.strftime('%Y-%m-%d')+"-%s"%clean_title
+        file_name = input("Enter a file name [Default:%s]\nIf you press enter, the default value is set as the filename.\n" %file_name) or file_name
+        
+        meta_title = input("Enter a Title [Default:%s]\nIf you press enter, the default value is set as the title.\n" %meta_title) or meta_title
+        print("Title: %s"%meta_title)  
         meta_subtitle = input("Enter a subtitle: ")
         meta_categories = input("Enter categories: ")
         meta_tags = re.sub(' *, *', ',', input("Enter tags (ex: dog,cat): ")).split(",")
@@ -55,7 +59,7 @@ for file in zip_files:
 
         # put meta data
         lines.insert(0, "---")
-        lines.insert(1, "title: %s"%meta_title)
+        lines.insert(1, "title: \"%s\""%meta_title)
         lines.insert(2, "subtitle: %s"%meta_subtitle)
         lines.insert(3, "categories: %s"%meta_categories)
         lines.insert(4, "date: %s"%meta_date)
@@ -64,18 +68,18 @@ for file in zip_files:
             lines.insert(6+index, "  - %s"%tag)
         lines.insert(7+index, "---")
 
-        file_name = time.strftime('%Y-%m-%d')+"-%s"%clean_title
+
 
         # -----------------------[Image]---------------------------
         images = [i for i in content_files if i != md_file]
         if len(images):
             ori_img_dir = os.path.split(images[0])[0]
 
-            # change names of image files (space -> %20)
+            # change names of image files
             for image in images:
                 new_img_name = imgNameTransform(os.path.basename(image))
                 os.rename(image, os.path.join(ori_img_dir,new_img_name))
-    
+
             # move images
             new_image_dir = os.path.join(images_folder_path, file_name)
             shutil.move(ori_img_dir, new_image_dir)
