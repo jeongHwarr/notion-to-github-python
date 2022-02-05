@@ -87,10 +87,10 @@ for file in zip_files:
 
             # edit a md file (edit image path)
             for idx, line in enumerate(lines):
-                find_img_content = re.search('!\[(.+)/(.+?)\]',line)
+                find_img_content = re.search('!\[(.+)]\((.+)/(.+?)\)',line)
                 if find_img_content:
-                    img_path = find_img_content.group(1)
-                    img_name = find_img_content.group(2)
+                    img_path = find_img_content.group(2)
+                    img_name = find_img_content.group(3)
                     line = line.replace(img_path, "/"+new_image_dir.replace(os.sep,"/"))
                     lines[idx] = line.replace(img_name, imgNameTransform(img_name))
 
