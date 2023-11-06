@@ -34,7 +34,7 @@ cd notion-to-github-python
 sudo cp notion-to-github-python.py <본인의 github 블로그 디렉터리> 
 ```
 
-2. 아래의 방법으로 Notion 페이지를 Export하여 본인 github 블로그 디렉터리 안 _*posts* 폴더*(username.github.io/_posts)*에 옮겨줍니다. 
+2. 아래의 방법으로 Notion 페이지를 zip 압축파일 형태로 Export하여 본인 github 블로그 디렉터리 안 _*posts* 폴더*(username.github.io/_posts)*에 옮겨줍니다. 
 
 ![/assets/images/2021-02-03-notion_to_github_python/untitled.png](/assets/images/2021-02-03-notion_to_github_python/untitled.png)
 

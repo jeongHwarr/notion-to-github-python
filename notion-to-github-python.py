@@ -8,9 +8,9 @@ import shutil
 posts_folder_path='_posts'# set post_folder path
 images_folder_path=os.path.join('assets','images') # set image folder path
 
-exported_zip_reg="Export-*.zip"
+exported_zip_reg="*.zip"
 
-zip_files = glob.glob(os.path.join(posts_folder_path, "Export-*.zip"), recursive=False)
+zip_files = glob.glob(os.path.join(posts_folder_path, "*.zip"), recursive=False)
 
 
 def imgNameTransform(text):
